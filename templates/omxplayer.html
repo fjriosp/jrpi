@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Player</h1>
+{% if playing %}
+<p>{{ playing.file }}</p>
+{% else %}
+<p>Idle</p>
+{% endif %}
+
+<h1>Controls</h1>
+<ul class="button-group">
+  <li><a href="{{ url_for('omxplayer_command',command='seek-600') }}" class="tiny button">&lt;&lt;</a></li>
+  <li><a href="{{ url_for('omxplayer_command',command='seek-30' ) }}" class="tiny button">&lt;</a></li>
+  <li><a href="{{ url_for('omxplayer_command',command='pause'   ) }}" class="tiny button">Pause</a></li>
+  <li><a href="{{ url_for('omxplayer_command',command='stop'    ) }}" class="tiny button">Stop</a></li>
+  <li><a href="{{ url_for('omxplayer_command',command='seek+600') }}" class="tiny button">&gt;</a></li>
+  <li><a href="{{ url_for('omxplayer_command',command='seek+30' ) }}" class="tiny button">&gt;&gt;</a></li>
+</ul>
+{% endblock %}

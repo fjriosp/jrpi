@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Files</h1>
+<ul>
+{% for f in files %}
+<li><a href="{{ url_for('play',path=f.path) }}">{{ f.name }}</a></li>
+{% else %}
+<li>No files</li>
+{% endfor %}
+</ul>
+<h1>Folders</h1>
+<ul>
+{% for f in folders %}
+<li><a href="{{ url_for('list',path=f.path) }}">{{ f.name }}</a></li>
+{% else %}
+<li>No folders</li>
+{% endfor %}
+</ul>
+{% endblock %}
