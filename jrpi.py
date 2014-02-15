@@ -4,6 +4,7 @@ import os,stat
 import subprocess
 from flask import Flask,render_template,request,abort,redirect,url_for
 from omxplayer import OMXPlayer
+import youtube
 
 app = Flask(__name__,static_url_path='')
 path_media = os.path.dirname(os.path.realpath(__file__))+'/media'
@@ -43,6 +44,21 @@ def omxplayer_command():
 
   return redirect(url_for('omxplayer_status'));
 
+@app.route('/youtube/search')
+def youtube_search():
+  query = request.args.get('q', '')
+  return render_template('youtube_search.html',videos=youtube.search(query),q=query)
+
+@app.route('/youtube/play')
+def youtube_play():
+  vid = request.args.get('id', '')
+  vname = request.args.get('name', '')
+  query = request.args.get('q', '')
+
+  omxplayer.play(youtube.getStream(vid),vname)
+
+  return redirect(url_for('youtube_search',q=query));
+
 @app.route('/list')
 def list():
   rpath = request.args.get('path', '.')
@@ -81,5 +97,5 @@ def status():
   return render_template('index.html',omxplayer=status)
 
 if __name__ == '__main__':
-  app.debug = True
+#  app.debug = True
   app.run(host='0.0.0.0',port=8000)

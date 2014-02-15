@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block head %}
+{{ super() }}
+<link rel='stylesheet' href="{{ url_for('static', filename='css/jrpi.css') }}">
+{% endblock %}
+{% block content %}
+<form style='margin: 0px;'>
+  <div class='row'>
+    <div class='large-12 columns'>
+      <input name='q' type='text' placeholder='large-12.columns'/>
+    </div>
+  </div>
+</form>
+{% for v in videos %}
+<div class='row youtube'>
+  <div class='medium-2 columns'><a href='{{ url_for('youtube_play', id=v.id, name=v.title, q=q) }}'><img src='{{ v.frame }}'/></a></div>
+  <div class='medium-10 columns'>
+    <div class='row'><strong>{{ v.title }}</strong></div>
+    <div class='row'>{{ v.description}}</div>
+  </div>
+</div>
+{% else %}
+<div class='row'>No results</div>
+{% endfor %}
+{% endblock %}

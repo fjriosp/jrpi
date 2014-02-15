@@ -21,11 +21,12 @@
         <ul class="left">
           <li><a href="{{ url_for('list') }}">Explore</a></li>
           <li><a href="{{ url_for('omxplayer_status') }}">OMXPlayer</a></li>
+          <li><a href="{{ url_for('youtube_search') }}">YouTube</a></li>
         </ul>
       </section>
     </nav>
 
-    <div id="content">{% block content %}{% endblock %}</div>
+    <div id="content" style='padding: 10px;'>{% block content %}{% endblock %}</div>
     <script src="/js/vendor/jquery.js"></script>
     <script src="/js/vendor/fastclick.js"></script>
 <script src="{{ url_for('static',filename='js/foundation.min.js') }}"></script>
