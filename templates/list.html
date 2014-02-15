@@ -3,7 +3,7 @@
 <h1>Files</h1>
 <ul>
 {% for f in files %}
-<li><a href="{{ url_for('play',path=f.path) }}">{{ f.name }}</a></li>
+<li><a href="{{ url_for('omxplayer_command',command='play',path=f.path) }}">{{ f.name }}</a></li>
 {% else %}
 <li>No files</li>
 {% endfor %}
